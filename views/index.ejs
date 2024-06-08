@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know about weather</title>
+    <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <script src="https://kit.fontawesome.com/fa9e589bc3.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="#"> -->
+</head>
+
+<body>
+    <div class="megascreen">
+        <form id="form" action="/weather" method="get">
+            <label for="location">Enter the location of the place</label>
+            <input type="text" name="location" id="location">
+        </form>
+        <% if (error){ %>
+            <p class="error">
+                <%=error%>
+            </p>
+            <%}else if(weather!=null){ %>
+                <div class="container">
+
+                    <div class="inner-container" id="temperature">
+                        <div class="font-temp"> <i class="fa-solid fa-temperature-three-quarters"></i></div>
+                        <div class="font-temp text">
+                            <p>
+                                <%= weather.main.temp %>&degF
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="inner-container" id="cloud">
+                        <div class="font-temp cloud-img">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div class="font-temp text">
+                            <p>
+                                <%= weather.weather[0].main %>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="inner-container" id="humidity">
+                        <div class="font-temp humidity">
+                            <i class="fa-solid fa-sun-plant-wilt"></i>
+                        </div>
+                        <div class="font-temp text">
+                            <p>
+                                <span> humidity </span>
+                                <%= weather.main.humidity %>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="inner-container" id="other-info">
+                        <div class="font-temp other-info">
+                            <i class="fa-solid fa-earth-asia"></i>
+                        </div>
+                        <div class="font-temp text">
+                            <p>
+                                longitude
+                                <span id="tex-decor">
+                                    <%= weather.coord.lon %>
+                                </span>
+                                latitude
+                                <span id="tex-decor">
+                                    <%= weather.coord.lat %>
+                                </span>
+                                sea level
+                                <span id="tex-decor">
+                                    <%= weather.main.sea_level %>
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <% } %>
+
+    </div>
+    <!-- <script src="/static/index.js"  type="module"></script> -->
+
+</body>
+
+</html>
